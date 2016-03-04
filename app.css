@@ -81,6 +81,7 @@
     font-size: 15px;
     border-color: gray;
     border-width: 1px;
+    outline: none;
 }
 
 .flockster-close-button {
@@ -114,17 +115,11 @@
 }
 
 .flockster-content .message.outgoing {
-/*    background-color: #0dcb57;
+    background-color: #0dcb57;
     color: white;
     display: inline-block;
     float: right;
-    margin-right: 5px;*/
-    background-color: white;
-    display: inline-block;
-    margin-left: 5px;
-    float: left;
-    border-color: black;
-    border-width: 1px;
+    margin-right: 5px;   
 }
 
 .flockster-content .message.incoming {
@@ -133,7 +128,7 @@
     margin-left: 5px;
     float: left;
     border-color: gray;
-    border-width: 1px;
+    border-width: 4px;
 }
 
 .flockster-content .message .label {
@@ -161,10 +156,12 @@
 }
 .flockster-favicon {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin-left: 20px;
-    margin-top: 15px;
+    margin-top: 10px;
+    background-image: url("assets/flock-logo-flockIcon@2x.png");
+    background-size: 100%;
 }
 
 
