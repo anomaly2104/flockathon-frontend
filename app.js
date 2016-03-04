@@ -47,6 +47,7 @@ $(document).ready(function() {
         $(headerSelector).removeClass("should-blink");
         $(contentSelector).toggleClass("minimized");
         $(footerSelector).toggleClass("minimized");
+        scrollMessagesToBottom(chatPopUpID);
     }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
@@ -156,6 +157,11 @@ $(document).ready(function() {
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         $(contentSelector).append(
             "<div class='message " + directionClass +"'><span class='text'>" + text + "</span></div>");
+        scrollMessagesToBottom(chatPopUpID);
+
+    }
+    function scrollMessagesToBottom(chatPopUpID) {
+        var contentSelector = "#" + chatPopUpID + " .flockster-content";
         $(contentSelector).stop().animate({
             scrollTop: $(contentSelector)[0].scrollHeight
         }, 800);
