@@ -131,7 +131,10 @@ $(document).ready(function() {
 
 
     function showMessageOnScreen(chatPopUpID, message) {
-        $("#" + chatPopUpID + " .flockster-content").append("<div class='message'><span class='label'>" + message.token + ": </span><span class='text'>" + message.text + "</span></div>");
+        logi("Showing message on screen");
+        logi(message);
+        $("#" + chatPopUpID + " .flockster-content").append(
+            "<div class='message'><span class='label'>" + message.token + ": </span><span class='text'>" + message.text + "</span></div>");
         //$("#chat-text").stop().animate({
         //    scrollTop: $('#chat-text')[0].scrollHeight
         //}, 800);
@@ -156,10 +159,9 @@ $(document).ready(function() {
     }
 
     function writeToWebSocket(chatPopUpID, JSONData) {
-        logi("Writing to websocket: " + JSONData);
         if(ws == null || token == null) {
             //TODO: may be show some warning or error
-            loge("Websock or token invalid");
+            loge("Could not write. Websocket or token invalid");
             return;
         }
         ws.send(JSON.stringify(JSONData));
