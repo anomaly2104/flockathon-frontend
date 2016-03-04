@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    //Added test comment to check github auto pull.
     var namespaceID = "flockster-";
     var host = "172.16.44.96:5000";
 
