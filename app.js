@@ -127,15 +127,30 @@ $(document).ready(function() {
 
         ws.onmessage = function(message) {
             var data = JSON.parse(message.data);
+            if (data.support-name) {
+                configReceived(data);
+                return;
+            }
+
             logi("Parsed message received: ");
             logi(data);
             receivedMessage(chatPopUpID, data);
         };
     }
 
+    function configReceived(config) {
+        showWelcomeMessage(config.welcome-message)
+    }
+
     function sendToken(chatPopUpID) {
         logi("Sending token: " + token);
         writeToWebSocket({handle: token});
+    }
+
+    function showWelcomeMessage(welcomMessage) {
+        var contentSelector = "#" + chatPopUpID + " .flockster-content";
+        $(contentSelector).append(
+            "<div class='welcome-message'>"+welcomMessage+"</div>");
     }
 
 
