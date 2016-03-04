@@ -23,11 +23,11 @@ $(document).ready(function() {
     }
 
     function loge(msg) {
-        log("ERROR: " + msg);
+        log(msg);
     }
 
     function logi(msg) {
-        log("INFO: " + msg);
+        log(msg);
     }
 
     function newDivWithID(id) {
@@ -73,13 +73,30 @@ $(document).ready(function() {
         return "user" + Math.floor((Math.random() * 1000) + 1);
     }
 
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
     function assignToken() {
         logi("Assigning token");
-        if (typeof $.cookie('token') === 'undefined'){
+        token = getCookie("token");
+        if (token == "") {
             token = newToken();
-            $.cookie("test", token);
-        } else {
-            token = $.cookie('token');
+            setCookie("token", token, 365);
         }
         logi("Token assigned: " + token);
     }
@@ -96,49 +113,49 @@ $(document).ready(function() {
         ws = initWebSocket();
         ws.onopen = function() {
             logi("Websocket opened");
-            sendToken();
+            sendToken(chatPopUpID);
         };
 
         ws.onmessage = function(message) {
             logi("Message received: " + message);
             var data = JSON.parse(message.data);
             logi("Parsed message received: " + data);
-            receivedMessage(data);
+            receivedMessage(chatPopUpID, data);
         };
     }
 
-    function sendToken() {
+    function sendToken(chatPopUpID) {
         logi("Sending token: " + token);
-        writeToWebSocket({token: token});
+        writeToWebSocket(chatPopUpID, {token: token});
     }
 
 
-    function showMessageOnScreen(message) {
-        $("#" + chatPopUpID + " .flockster-content").append("<div class='message'><span class='label'>" + message.token + "</span><span class='text'>" + message.text + "</span></div>");
+    function showMessageOnScreen(chatPopUpID, message) {
+        $("#" + chatPopUpID + " .flockster-content").append("<div class='message'><span class='label'>" + message.token + ": </span><span class='text'>" + message.text + "</span></div>");
         //$("#chat-text").stop().animate({
         //    scrollTop: $('#chat-text')[0].scrollHeight
         //}, 800);
     }
 
-    function receivedMessage(message) {
-        showMessageOnScreen(message);
+    function receivedMessage(chatPopUpID, message) {
+        showMessageOnScreen(chatPopUpID, message);
     }
 
     function sendMessageClicked(chatPopUpID) {
         var textArea = $("#" + chatPopUpID + " .flockster-footer .flockster-text-input");
         var text = textArea.val();
         logi(text);
-        sendMessage(text)
+        sendMessage(chatPopUpID, text)
     }
 
-    function sendMessage(text) {
+    function sendMessage(chatPopUpID, text) {
         logi("Sending message: " + text);
         var message = { token: token, text: text };
         writeToWebSocket(message);
-        showMessageOnScreen(message);
+        showMessageOnScreen(chatPopUpID, message);
     }
 
-    function writeToWebSocket(JSONData) {
+    function writeToWebSocket(chatPopUpID, JSONData) {
         logi("Writing to websocket: " + JSONData);
         if(ws == null || token == null) {
             //TODO: may be show some warning or error
@@ -146,8 +163,9 @@ $(document).ready(function() {
             return;
         }
         ws.send(JSON.stringify(JSONData));
-        logi("Written to websocket: " + JSONData);
-        showMessageOnScreen(message);
+        logi("Written to websocket: ");
+        logi(JSONData);
+        showMessageOnScreen(chatPopUpID, JSONData);
     }
 
     var startChatButtonID = namespaceID + "start-chat";
