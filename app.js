@@ -42,6 +42,11 @@ $(document).ready(function() {
         var plusDiv = newDivWithID(id).html("+");
         $("body").append(plusDiv);
     }
+    
+    function configureChatPopUpHeader(chatPopUpHeader) {
+        var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
+        chatPopUpHeader.append(closeButton);
+    }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
         var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input");
@@ -59,8 +64,9 @@ $(document).ready(function() {
         var chatPopUpHeader = newDivWithClass(namespaceID + "header");
         var chatPopUpContent = newDivWithClass(namespaceID + "content");
         var chatPopUpFooter = newDivWithClass(namespaceID + "footer");
+        configureChatPopUpHeader(chatPopUpHeader);
         configureChatPopUpFooter(chatPopUpID, chatPopUpFooter);
-
+        
         chatPopUp.append(chatPopUpHeader, chatPopUpContent, chatPopUpFooter);
 
         $("body").append(chatPopUp);
