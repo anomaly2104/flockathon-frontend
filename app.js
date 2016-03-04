@@ -43,6 +43,7 @@ $(document).ready(function() {
         $("body").append(plusDiv);
     }
     
+
     function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
         var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
         chatPopUpHeader.append(closeButton);
@@ -165,12 +166,12 @@ $(document).ready(function() {
         if(direction === "incoming") {
             directionClass = "incoming";
         }
-
-        $("#" + chatPopUpID + " .flockster-content").append(
+        var contentSelector = "#" + chatPopUpID + " .flockster-content";
+        $(contentSelector).append(
             "<div class='message " + directionClass +"'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
-        //$("#chat-text").stop().animate({
-        //    scrollTop: $('#chat-text')[0].scrollHeight
-        //}, 800);
+        $(contentSelector).stop().animate({
+            scrollTop: $(contentSelector)[0].scrollHeight
+        }, 800);
     }
 
     function receivedMessage(chatPopUpID, message) {

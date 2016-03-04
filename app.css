@@ -28,9 +28,10 @@
 }
 
 .flockster-content {
+    width: 95%;
     height: 200px;
-    width: 100%;
     overflow: scroll;
+    padding: 2.5% 2.5% 2.5% 2.5%; 
 }
 
 .flockster-footer {
@@ -52,6 +53,7 @@
     resize: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    font-size: 14px;
 }
 
 .flockster-send-button {
@@ -68,10 +70,14 @@
     top: 5px;
     right: 5px;
     width: 20px;
-    height: 20px;
+    height: 20px; 
     text-align: center;
-    padding: 0px;
     font-size: 12px;
+}
+
+.flockster-content .message {
+    width: 290px;
+    word-wrap: break-word;
 }
 
 .flockster-content .message .label {
