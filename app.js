@@ -1,22 +1,6 @@
-
-//ws.onmessage = function(message) {
-//    var data = JSON.parse(message.data);
-//    $("#chat-text").append("<div class='panel panel-default'><div class='panel-heading'>" + data.handle + "</div><div class='panel-body'>" + data.text + "</div></div>");
-//    $("#chat-text").stop().animate({
-//        scrollTop: $('#chat-text')[0].scrollHeight
-//    }, 800);
-//};
-//
-//$("#input-form").on("submit", function(event) {
-//    event.preventDefault();
-//    var handle = $("#input-handle")[0].value;
-//    var text   = $("#input-text")[0].value;
-//    ws.send(JSON.stringify({ handle: handle, text: text }));
-//    $("#input-text")[0].value = "";
-//});
-
 $(document).ready(function() {
     var namespaceID = "flockster-";
+    var host = "172.16.44.96:5000";
 
     function log(msg) {
         console.log(msg);
@@ -54,12 +38,16 @@ $(document).ready(function() {
     }
 
     function toggleChat(chatPopUpID) {
+        var headerSelector = "#" + chatPopUpID + " .flockster-header";
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         var footerSelector = "#" + chatPopUpID + " .flockster-footer";
 
         logi(contentSelector);
-        $(contentSelector).toggleClass("height-zero");
-        $(footerSelector).toggleClass("height-zero");
+        $(headerSelector).toggleClass("minimized");
+        $(headerSelector).removeClass("should-blink");
+        $(contentSelector).toggleClass("minimized");
+        $(footerSelector).toggleClass("minimized");
+        scrollMessagesToBottom(chatPopUpID);
     }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
@@ -124,7 +112,7 @@ $(document).ready(function() {
 
     function initWebSocket() {
         var scheme   = "ws://";
-        var uri      = scheme + "172.16.44.96:5000" + "/";
+        var uri      = scheme + host + "/";
         return new WebSocket(uri);
     }
 
@@ -168,13 +156,19 @@ $(document).ready(function() {
         }
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         $(contentSelector).append(
-            "<div class='message " + directionClass +"'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
+            "<div class='message " + directionClass +"'><span class='text'>" + text + "</span></div>");
+        scrollMessagesToBottom(chatPopUpID);
+
+    }
+    function scrollMessagesToBottom(chatPopUpID) {
+        var contentSelector = "#" + chatPopUpID + " .flockster-content";
         $(contentSelector).stop().animate({
             scrollTop: $(contentSelector)[0].scrollHeight
         }, 800);
     }
 
     function receivedMessage(chatPopUpID, message) {
+        $("#"+chatPopUpID+" .flockster-header.minimized").addClass("should-blink");
         showMessageOnScreen(chatPopUpID, message, "incoming");
     }
 
@@ -226,4 +220,13 @@ $(document).ready(function() {
         showChatPopUp(chatPopUpID);
         startChat(chatPopUpID);
     });
+
+    function timeoutBlink() {
+        $(".flockster-header.minimized.should-blink").toggleClass("blink");
+        setTimeout(function(){
+            timeoutBlink();
+        }, 1000);
+    }
+    timeoutBlink();
+
 });
