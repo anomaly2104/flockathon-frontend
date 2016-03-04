@@ -55,12 +55,15 @@ $(document).ready(function() {
     }
 
     function toggleChat(chatPopUpID) {
+        var headerSelector = "#" + chatPopUpID + " .flockster-header";
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         var footerSelector = "#" + chatPopUpID + " .flockster-footer";
 
         logi(contentSelector);
-        $(contentSelector).toggleClass("height-zero");
-        $(footerSelector).toggleClass("height-zero");
+        $(headerSelector).toggleClass("minimized");
+        $(headerSelector).removeClass("should-blink");
+        $(contentSelector).toggleClass("minimized");
+        $(footerSelector).toggleClass("minimized");
     }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
@@ -176,6 +179,7 @@ $(document).ready(function() {
     }
 
     function receivedMessage(chatPopUpID, message) {
+        $("#"+chatPopUpID+" .flockster-header.minimized").addClass("should-blink");
         showMessageOnScreen(chatPopUpID, message, "incoming");
     }
 
@@ -227,4 +231,13 @@ $(document).ready(function() {
         showChatPopUp(chatPopUpID);
         startChat(chatPopUpID);
     });
+
+    function timeoutBlink() {
+        $(".flockster-header.minimized.should-blink").toggleClass("blink");
+        setTimeout(function(){
+            timeoutBlink();
+        }, 1000);
+    }
+    timeoutBlink();
+
 });

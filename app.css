@@ -38,12 +38,15 @@
    height: 50px;
 }
 
+.flockster-header.minimized.should-blink.blink {
+    background-color: lightgreen;
+}
 
-.flockster-content.height-zero {
+.flockster-content.minimized {
     display: none;
 }
 
-.flockster-footer.height-zero {
+.flockster-footer.minimized {
     display: none;
 }
 
