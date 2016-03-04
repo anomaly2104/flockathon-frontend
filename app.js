@@ -124,9 +124,19 @@ $(document).ready(function() {
         assignToken();
         logi("Initializing web socket");
         ws = initWebSocket();
+        showStatus(chatPopUpID, "Connecting...");
         ws.onopen = function() {
+            showStatus(chatPopUpID, "Connected");
             logi("Websocket opened");
             sendToken(chatPopUpID);
+        };
+
+        ws.onclose = function() {
+            showStatus(chatPopUpID, "Not connected");
+        };
+
+        ws.onerror = function() {
+            showStatus(chatPopUpID, "Not connected");
         };
 
         ws.onmessage = function(message) {
@@ -140,6 +150,11 @@ $(document).ready(function() {
             logi(data);
             receivedMessage(chatPopUpID, data);
         };
+    }
+
+    function showStatus(chatPopUpID, status) {
+        var selector = "#" + chatPopUpID + " .flockster-header .flockster-connection-status-label";
+        $(selector).text(status);
     }
 
     function configReceived(chatPopUpID, config) {
