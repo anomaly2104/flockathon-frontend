@@ -127,8 +127,8 @@ $(document).ready(function() {
 
         ws.onmessage = function(message) {
             var data = JSON.parse(message.data);
-            if (data.support-name) {
-                configReceived(data);
+            if(data.hasOwnProperty("support-name")){
+                configReceived(chatPopUpID, data);
                 return;
             }
 
@@ -138,8 +138,8 @@ $(document).ready(function() {
         };
     }
 
-    function configReceived(config) {
-        showWelcomeMessage(config.welcome-message)
+    function configReceived(chatPopUpID, config) {
+        showWelcomeMessage(chatPopUpID, config["welcome-message"])
     }
 
     function sendToken(chatPopUpID) {
@@ -147,7 +147,7 @@ $(document).ready(function() {
         writeToWebSocket({handle: token});
     }
 
-    function showWelcomeMessage(welcomMessage) {
+    function showWelcomeMessage(chatPopUpID, welcomMessage) {
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         $(contentSelector).append(
             "<div class='welcome-message'>"+welcomMessage+"</div>");
