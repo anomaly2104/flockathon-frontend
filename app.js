@@ -168,7 +168,7 @@ $(document).ready(function() {
         }
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         $(contentSelector).append(
-            "<div class='message " + directionClass +"'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
+            "<div class='message " + directionClass +"'><span class='text'>" + text + "</span></div>");
         $(contentSelector).stop().animate({
             scrollTop: $(contentSelector)[0].scrollHeight
         }, 800);
