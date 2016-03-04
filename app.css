@@ -14,7 +14,8 @@
     bottom: 5px;
     right: 5px;
     width: 300px;
-    background-color: #d8d8d8;
+    //background-color: #d8d8d8;
+    background-color: #f6f4f1;
     border-radius: 6px;
     border-style: solid;
     border-width: 1px;
@@ -28,7 +29,8 @@
    border-top-left-radius: 6px;
    border-top-right-radius: 6px;
    border-width: 1px;
-   border-color: black;
+   border-bottom:1px solid; 
+   border-bottom-color: black;
 }
 
 .flockster-content {
@@ -39,11 +41,13 @@
 }
 
 .flockster-footer {
-   height: 50px;
+   height: 40px;
+   border-bottom-left-radius: 6px;
+   border-bottom-right-radius: 6px;
 }
 
 .flockster-header.minimized.should-blink.blink {
-    background-color: lightgreen;
+    background-color: #0dcb57;
 }
 
 .flockster-content.minimized {
@@ -58,15 +62,16 @@
     width: 80%;
     height: 100%;
     resize: none;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border: none;
     font-size: 14px;
     padding: 10px 10px 10px 10px;
+    border-bottom-left-radius: 6px;
+    border-color: black;
 }
 
 .flockster-send-button {
     position: absolute;
-    height: 50px;
+    height: 40px;
     width: 20%;
     bottom: 0px;
     border-bottom-right-radius: 6px;
@@ -74,7 +79,7 @@
     color: #0dcb57;
     background-color: white;
     font-size: 15px;
-    border-color: black;
+    border-color: gray;
     border-width: 1px;
 }
 
@@ -91,6 +96,7 @@
     border-radius: 4px;
     color: #0dcb57;
     background-color: white;
+    outline: none;
 }
 
 .flockster-content .message {
@@ -103,15 +109,22 @@
     padding: 10px 10px 10px 10px;
     margin-bottom: 10px;
     font-family: "HelveticaNueue";
+    font-size: 17px;
     clear: both;
 }
 
 .flockster-content .message.outgoing {
-    background-color: #0dcb57;
+/*    background-color: #0dcb57;
     color: white;
     display: inline-block;
     float: right;
-    margin-right: 5px;
+    margin-right: 5px;*/
+    background-color: white;
+    display: inline-block;
+    margin-left: 5px;
+    float: left;
+    border-color: black;
+    border-width: 1px;
 }
 
 .flockster-content .message.incoming {
@@ -119,13 +132,39 @@
     display: inline-block;
     margin-left: 5px;
     float: left;
+    border-color: gray;
+    border-width: 1px;
 }
 
 .flockster-content .message .label {
-
 }
 
 .flocckster-content .message .text {
 
 }
+
+.flockster-header-label {
+    position: absolute;
+    margin-left: 80px;
+    margin-top: 5px;
+
+    width: 50px;
+    height: 20px;
+}
+
+.flockster-connection-status-label {
+    position: absolute;
+    margin-left: 80px;
+    margin-top: 25px;
+    font-size: 13px;
+        
+}
+.flockster-favicon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
 
