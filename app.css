@@ -79,9 +79,8 @@
     /*width: 290px;*/
     word-wrap: break-word;
     border-radius: 8px;
-    height: 30px;
-    padding-top: 10px;
-    padding-left: 10px;
+    min-height: 30px;
+    padding: 10px 10px 10px 10px;
     margin-bottom: 5px;
 }
 
