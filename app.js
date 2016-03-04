@@ -143,7 +143,13 @@ $(document).ready(function() {
     }
 
     function configReceived(chatPopUpID, config) {
-        showWelcomeMessage(chatPopUpID, config["welcome-message"])
+        showSupportName(chatPopUpID, config["support-name"]);
+        showWelcomeMessage(chatPopUpID, config["welcome-message"]);
+    }
+
+    function showSupportName(chatPopUpID, supportName) {
+        var selector = "#" + chatPopUpID + " .flockster-header .flockster-header-label";
+        $(selector).text(supportName);
     }
 
     function sendToken(chatPopUpID) {
