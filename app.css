@@ -28,21 +28,13 @@
 }
 
 .flockster-content {
-<<<<<<< HEAD
-    height: 60%;
     width: 95%;
-=======
     height: 200px;
-    width: 100%;
->>>>>>> origin/master
     overflow: scroll;
     padding: 2.5% 2.5% 2.5% 2.5%; 
 }
 
 .flockster-footer {
-<<<<<<< HEAD
-    height: 15%;
-=======
    height: 50px;
 }
 
@@ -53,7 +45,6 @@
 
 .flockster-footer.height-zero {
     display: none;
->>>>>>> origin/master
 }
 
 .flockster-text-input {
@@ -67,11 +58,7 @@
 
 .flockster-send-button {
     position: absolute;
-<<<<<<< HEAD
-    height: 15%;
-=======
     height: 50px;
->>>>>>> origin/master
     width: 20%;
     bottom: 0px;
     border-bottom-right-radius: 6px;

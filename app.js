@@ -43,13 +43,9 @@ $(document).ready(function() {
         $("body").append(plusDiv);
     }
     
-<<<<<<< HEAD
-    function configureChatPopUpHeader(chatPopUpHeader) {
-        var closeButton = $("<button>").addClass(namespaceID + "close-button").text("x");
-=======
+
     function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
         var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
->>>>>>> origin/master
         chatPopUpHeader.append(closeButton);
 
         closeButton.on("click", function() {
