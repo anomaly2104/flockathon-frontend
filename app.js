@@ -69,6 +69,21 @@ $(document).ready(function() {
     var ws = null;
     var token = null;
 
+    function newToken() {
+        return "user" + Math.floor((Math.random() * 1000) + 1);
+    }
+
+    function assignToken() {
+        logi("Assigning token");
+        if (typeof $.cookie('token') === 'undefined'){
+            token = newToken();
+            $.cookie("test", token);
+        } else {
+            token = $.cookie('token');
+        }
+        logi("Token assigned: " + token);
+    }
+
     function initWebSocket() {
         var scheme   = "ws://";
         var uri      = scheme + "172.16.44.96:5000" + "/";
@@ -76,6 +91,7 @@ $(document).ready(function() {
     }
 
     function startChat(chatPopUpID) {
+        assignToken();
         logi("Initializing web socket");
         ws = initWebSocket();
         ws.onopen = function() {
