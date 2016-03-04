@@ -43,9 +43,27 @@ $(document).ready(function() {
         $("body").append(plusDiv);
     }
     
+<<<<<<< HEAD
     function configureChatPopUpHeader(chatPopUpHeader) {
         var closeButton = $("<button>").addClass(namespaceID + "close-button").text("x");
+=======
+    function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
+        var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
+>>>>>>> origin/master
         chatPopUpHeader.append(closeButton);
+
+        closeButton.on("click", function() {
+            toggleChat(chatPopUpID);
+        });
+    }
+
+    function toggleChat(chatPopUpID) {
+        var contentSelector = "#" + chatPopUpID + " .flockster-content";
+        var footerSelector = "#" + chatPopUpID + " .flockster-footer";
+
+        logi(contentSelector);
+        $(contentSelector).toggleClass("height-zero");
+        $(footerSelector).toggleClass("height-zero");
     }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
@@ -64,7 +82,7 @@ $(document).ready(function() {
         var chatPopUpHeader = newDivWithClass(namespaceID + "header");
         var chatPopUpContent = newDivWithClass(namespaceID + "content");
         var chatPopUpFooter = newDivWithClass(namespaceID + "footer");
-        configureChatPopUpHeader(chatPopUpHeader);
+        configureChatPopUpHeader(chatPopUpID, chatPopUpHeader);
         configureChatPopUpFooter(chatPopUpID, chatPopUpFooter);
         
         chatPopUp.append(chatPopUpHeader, chatPopUpContent, chatPopUpFooter);
@@ -137,7 +155,7 @@ $(document).ready(function() {
 
 
     function showMessageOnScreen(chatPopUpID, message, direction) {
-        logi("Showing message on screen");
+        logi("Showing message on screen, direction: " + direction);
         logi(message);
 
         var label = message.handle;
@@ -148,8 +166,7 @@ $(document).ready(function() {
         }
 
         var directionClass = "outgoing";
-
-        if(direction == "incoming") {
+        if(direction === "incoming") {
             directionClass = "incoming";
         }
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
