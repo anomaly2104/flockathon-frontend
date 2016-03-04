@@ -126,7 +126,7 @@ $(document).ready(function() {
 
     function sendToken(chatPopUpID) {
         logi("Sending token: " + token);
-        writeToWebSocket(chatPopUpID, {token: token});
+        writeToWebSocket({handle: token});
     }
 
 
@@ -134,7 +134,7 @@ $(document).ready(function() {
         logi("Showing message on screen");
         logi(message);
         $("#" + chatPopUpID + " .flockster-content").append(
-            "<div class='message'><span class='label'>" + message.token + ": </span><span class='text'>" + message.text + "</span></div>");
+            "<div class='message'><span class='label'>" + message.handle + ": </span><span class='text'>" + message.text + "</span></div>");
         //$("#chat-text").stop().animate({
         //    scrollTop: $('#chat-text')[0].scrollHeight
         //}, 800);
@@ -152,7 +152,7 @@ $(document).ready(function() {
     }
 
     function sendMessage(chatPopUpID, text) {
-        var message = { token: token, text: text };
+        var message = { handle: token, text: text };
         logi("Sending message: ");
         logi(message);
         writeToWebSocket(message);
