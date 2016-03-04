@@ -1,0 +1,35 @@
+#flockster-start-chat {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: cadetblue;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.flocckster-chat-pop-up {
+
+}
+
+.flocckster-header {
+
+}
+
+.flocckster-content {
+
+}
+
+.flocckster-footer {
+
+}
+
+
+.flocckster-content .message .label {
+
+}
+
+.flocckster-content .message .text {
+
+}
