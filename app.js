@@ -80,6 +80,7 @@ $(document).ready(function() {
         ws = initWebSocket();
         ws.onopen = function() {
             logi("Websocket opened");
+            sendToken();
         };
 
         ws.onmessage = function(message) {
@@ -89,6 +90,12 @@ $(document).ready(function() {
             receivedMessage(data);
         };
     }
+
+    function sendToken() {
+        logi("Sending token: " + token);
+        writeToWebSocket({token: token});
+    }
+
 
     function showMessageOnScreen(message) {
         $("#" + chatPopUpID + " .flockster-content").append("<div class='message'><span class='label'>" + message.token + "</span><span class='text'>" + message.text + "</span></div>");
@@ -110,14 +117,20 @@ $(document).ready(function() {
 
     function sendMessage(text) {
         logi("Sending message: " + text);
+        var message = { token: token, text: text };
+        writeToWebSocket(message);
+        showMessageOnScreen(message);
+    }
+
+    function writeToWebSocket(JSONData) {
+        logi("Writing to websocket: " + JSONData);
         if(ws == null || token == null) {
             //TODO: may be show some warning or error
             loge("Websock or token invalid");
             return;
         }
-        var message = { token: token, text: text };
-        ws.send(JSON.stringify(message));
-        logi("Sent message: " + message);
+        ws.send(JSON.stringify(JSONData));
+        logi("Written to websocket: " + JSONData);
         showMessageOnScreen(message);
     }
 
