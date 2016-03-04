@@ -197,6 +197,7 @@ $(document).ready(function() {
             loge("Could not write. Websocket or token invalid");
             return;
         }
+        JSONData.uuid = flocksterID;
         ws.send(JSON.stringify(JSONData));
         logi("Written to websocket: ");
         logi(JSONData);
