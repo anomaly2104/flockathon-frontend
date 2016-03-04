@@ -18,6 +18,18 @@
 $(document).ready(function() {
     var namespaceID = "flockster-";
 
+    function log(msg) {
+        console.log(msg);
+    }
+
+    function loge(msg) {
+        log("ERROR: " + msg);
+    }
+
+    function logi(msg) {
+        log("INFO: " + msg);
+    }
+
     function newDivWithID(id) {
         return $("<div>").attr("id", id);
     }
@@ -31,21 +43,23 @@ $(document).ready(function() {
         $("body").append(plusDiv);
     }
 
-    function configureChatPopUpFooter(chatPopUpFooter) {
+    function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
         var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input");
         var sendButton = $("<button>").addClass(namespaceID + "send-button").text("Send");
-
+        sendButton.on("click", function() {
+            sendMessageClicked(chatPopUpID);
+        });
         chatPopUpFooter.append(inputTextArea, sendButton);
     }
 
     function showChatPopUp(chatPopUpID) {
-        console.log("start chat with popup ID: " + chatPopUpID);
+        logi("start chat with popup ID: " + chatPopUpID);
         var chatPopUp = newDivWithID(chatPopUpID);
 
         var chatPopUpHeader = newDivWithClass(namespaceID + "header");
         var chatPopUpContent = newDivWithClass(namespaceID + "content");
         var chatPopUpFooter = newDivWithClass(namespaceID + "footer");
-        configureChatPopUpFooter(chatPopUpFooter);
+        configureChatPopUpFooter(chatPopUpID, chatPopUpFooter);
 
         chatPopUp.append(chatPopUpHeader, chatPopUpContent, chatPopUpFooter);
 
@@ -62,9 +76,16 @@ $(document).ready(function() {
     }
 
     function startChat(chatPopUpID) {
+        logi("Initializing web socket");
         ws = initWebSocket();
+        ws.onopen = function() {
+            logi("Websocket opened");
+        };
+
         ws.onmessage = function(message) {
+            logi("Message received: " + message);
             var data = JSON.parse(message.data);
+            logi("Parsed message received: " + data);
             receivedMessage(data);
         };
     }
@@ -80,13 +101,23 @@ $(document).ready(function() {
         showMessageOnScreen(message);
     }
 
-    function sendMessage(text, token) {
+    function sendMessageClicked(chatPopUpID) {
+        var textArea = $("#" + chatPopUpID + " .flockster-footer .flockster-text-input");
+        var text = textArea.val();
+        logi(text);
+        sendMessage(text)
+    }
+
+    function sendMessage(text) {
+        logi("Sending message: " + text);
         if(ws == null || token == null) {
             //TODO: may be show some warning or error
+            loge("Websock or token invalid");
             return;
         }
         var message = { token: token, text: text };
         ws.send(JSON.stringify(message));
+        logi("Sent message: " + message);
         showMessageOnScreen(message);
     }
 
