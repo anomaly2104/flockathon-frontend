@@ -42,6 +42,15 @@
    border-radius: 6px;
 }
 
+.flockster-text-input {
+    width: 80%;
+    height: 100%;
+    resize: none;
+}
+
+.flocckster-send-button {
+    width: 20%;
+}
 
 .flockster-content .message .label {
 
@@ -50,3 +59,4 @@
 .flocckster-content .message .text {
 
 }
+
