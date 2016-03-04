@@ -49,7 +49,7 @@ $(document).ready(function() {
     }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
-        var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input");
+        var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input").attr("placeholder", "Enter your message here.");
         var sendButton = $("<button>").addClass(namespaceID + "send-button").text("Send");
         sendButton.on("click", function() {
             sendMessageClicked(chatPopUpID);
@@ -123,24 +123,33 @@ $(document).ready(function() {
         };
 
         ws.onmessage = function(message) {
-            logi("Message received: " + message);
             var data = JSON.parse(message.data);
-            logi("Parsed message received: " + data);
+            logi("Parsed message received: ");
+            logi(data);
             receivedMessage(chatPopUpID, data);
         };
     }
 
     function sendToken(chatPopUpID) {
         logi("Sending token: " + token);
-        writeToWebSocket(chatPopUpID, {token: token});
+        writeToWebSocket({handle: token});
     }
 
 
     function showMessageOnScreen(chatPopUpID, message) {
         logi("Showing message on screen");
         logi(message);
+
+        var label = message.handle;
+        var text = message.text;
+
+        if(label == token) {
+            label = "You";
+        }
+
+
         $("#" + chatPopUpID + " .flockster-content").append(
-            "<div class='message'><span class='label'>" + message.token + ": </span><span class='text'>" + message.text + "</span></div>");
+            "<div class='message'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
         //$("#chat-text").stop().animate({
         //    scrollTop: $('#chat-text')[0].scrollHeight
         //}, 800);
@@ -155,16 +164,18 @@ $(document).ready(function() {
         var text = textArea.val();
         logi(text);
         sendMessage(chatPopUpID, text)
+        textArea.val("");
     }
 
     function sendMessage(chatPopUpID, text) {
-        logi("Sending message: " + text);
-        var message = { token: token, text: text };
+        var message = { handle: token, text: text };
+        logi("Sending message: ");
+        logi(message);
         writeToWebSocket(message);
         showMessageOnScreen(chatPopUpID, message);
     }
 
-    function writeToWebSocket(chatPopUpID, JSONData) {
+    function writeToWebSocket(JSONData) {
         if(ws == null || token == null) {
             //TODO: may be show some warning or error
             loge("Could not write. Websocket or token invalid");
@@ -173,7 +184,6 @@ $(document).ready(function() {
         ws.send(JSON.stringify(JSONData));
         logi("Written to websocket: ");
         logi(JSONData);
-        showMessageOnScreen(chatPopUpID, JSONData);
     }
 
     var startChatButtonID = namespaceID + "start-chat";
