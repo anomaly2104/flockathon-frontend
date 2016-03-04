@@ -133,8 +133,17 @@ $(document).ready(function() {
     function showMessageOnScreen(chatPopUpID, message) {
         logi("Showing message on screen");
         logi(message);
+
+        var label = message.handle;
+        var text = message.text;
+
+        if(label == token) {
+            label = "You";
+        }
+
+
         $("#" + chatPopUpID + " .flockster-content").append(
-            "<div class='message'><span class='label'>" + message.handle + ": </span><span class='text'>" + message.text + "</span></div>");
+            "<div class='message'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
         //$("#chat-text").stop().animate({
         //    scrollTop: $('#chat-text')[0].scrollHeight
         //}, 800);
