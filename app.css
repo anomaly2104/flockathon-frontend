@@ -32,6 +32,7 @@
     height: 200px;
     overflow: scroll;
     padding: 2.5% 2.5% 2.5% 2.5%; 
+    background-color: #d8d8d8;
 }
 
 .flockster-footer {
@@ -85,14 +86,13 @@
 }
 
 .flockster-content .message.outgoing {
-    background-color: green;
+    background-color: #22c462;
     color: white;
     margin-left: 50px;
     margin-right: 5px;
 }
 
 .flockster-content .message.incoming {
-    background-color: lightblue;  
     margin-left: 5px;
     margin-right: 50px;
 }
