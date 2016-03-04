@@ -80,25 +80,22 @@
     word-wrap: break-word;
     border-radius: 8px;
     height: 30px;
-    padding-top: 5px;
-    padding-left: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 5px;
 }
 
 .flockster-content .message.outgoing {
-    left: 50px;
-    right: 10px;
     background-color: green;
     color: white;
-    margin-bottom: 30px;
-    margin-left: 30px;
+    margin-left: 50px;
+    margin-right: 5px;
 }
 
 .flockster-content .message.incoming {
-    left: 10px;
-    right: 50px;
-    background-color: lightblue;
-    padding-bottom: 30px;
-    padding-left: 30px;
+    background-color: lightblue;  
+    margin-left: 5px;
+    margin-right: 50px;
 }
 
 .flockster-content .message .label {
