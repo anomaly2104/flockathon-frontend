@@ -136,7 +136,7 @@ $(document).ready(function() {
     }
 
 
-    function showMessageOnScreen(chatPopUpID, message) {
+    function showMessageOnScreen(chatPopUpID, message, direction) {
         logi("Showing message on screen");
         logi(message);
 
@@ -147,16 +147,21 @@ $(document).ready(function() {
             label = "You";
         }
 
+        var directionClass = "outgoing";
+
+        if(direction == "incoming") {
+            directionClass = "incoming";
+        }
 
         $("#" + chatPopUpID + " .flockster-content").append(
-            "<div class='message'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
+            "<div class='message " + directionClass +"'><span class='label'>" + label + ": </span><span class='text'>" + text + "</span></div>");
         //$("#chat-text").stop().animate({
         //    scrollTop: $('#chat-text')[0].scrollHeight
         //}, 800);
     }
 
     function receivedMessage(chatPopUpID, message) {
-        showMessageOnScreen(chatPopUpID, message);
+        showMessageOnScreen(chatPopUpID, message, "incoming");
     }
 
     function sendMessageClicked(chatPopUpID) {
@@ -172,7 +177,7 @@ $(document).ready(function() {
         logi("Sending message: ");
         logi(message);
         writeToWebSocket(message);
-        showMessageOnScreen(chatPopUpID, message);
+        showMessageOnScreen(chatPopUpID, message, "outgoing");
     }
 
     function writeToWebSocket(JSONData) {
