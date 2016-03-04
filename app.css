@@ -30,12 +30,13 @@
 
 .flockster-content {
     height: 60%;
-    width: 100%;
+    width: 95%;
     overflow: scroll;
+    padding: 2.5% 2.5% 2.5% 2.5%; 
 }
 
 .flockster-footer {
-   height: 20%;
+    height: 15%;
 }
 
 .flockster-text-input {
@@ -44,11 +45,12 @@
     resize: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    font-size: 14px;
 }
 
 .flockster-send-button {
     position: absolute;
-    height: 20%;
+    height: 15%;
     width: 20%;
     bottom: 0px;
     border-bottom-right-radius: 6px;
@@ -60,10 +62,14 @@
     top: 5px;
     right: 5px;
     width: 20px;
-    height: 20px;
+    height: 20px; 
     text-align: center;
-    padding: 0px;
     font-size: 12px;
+}
+
+.flockster-content .message {
+    width: 290px;
+    word-wrap: break-word;
 }
 
 .flockster-content .message .label {
