@@ -5,7 +5,7 @@
     background-color: cadetblue;
     color: white;
     padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -83,21 +83,28 @@
     /*width: 290px;*/
     word-wrap: break-word;
     border-radius: 8px;
-    min-height: 30px;
+    min-height: 20px;
+    min-width: 30px;
+    max-width: 200px;
     padding: 10px 10px 10px 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-family: "HelveticaNueue";
+    clear: both;
 }
 
 .flockster-content .message.outgoing {
-    background-color: #22c462;
+    background-color: #0dcb57;
     color: white;
-    margin-left: 50px;
+    display: inline-block;
+    float: right;
     margin-right: 5px;
 }
 
 .flockster-content .message.incoming {
+    background-color: white;
+    display: inline-block;
     margin-left: 5px;
-    margin-right: 50px;
+    float: left;
 }
 
 .flockster-content .message .label {
