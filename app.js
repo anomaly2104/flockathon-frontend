@@ -44,7 +44,7 @@ $(document).ready(function() {
     }
 
     function configureChatPopUpFooter(chatPopUpID, chatPopUpFooter) {
-        var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input");
+        var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input").attr("placeholder", "Enter your message here.");
         var sendButton = $("<button>").addClass(namespaceID + "send-button").text("Send");
         sendButton.on("click", function() {
             sendMessageClicked(chatPopUpID);
@@ -149,6 +149,7 @@ $(document).ready(function() {
         var text = textArea.val();
         logi(text);
         sendMessage(chatPopUpID, text)
+        textArea.val("");
     }
 
     function sendMessage(chatPopUpID, text) {
