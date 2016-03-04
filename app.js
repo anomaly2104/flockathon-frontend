@@ -131,7 +131,7 @@ $(document).ready(function() {
 
 
     function showMessageOnScreen(chatPopUpID, message, direction) {
-        logi("Showing message on screen");
+        logi("Showing message on screen, direction: " + direction);
         logi(message);
 
         var label = message.handle;
@@ -142,8 +142,7 @@ $(document).ready(function() {
         }
 
         var directionClass = "outgoing";
-
-        if(direction == "incoming") {
+        if(direction === "incoming") {
             directionClass = "incoming";
         }
 
