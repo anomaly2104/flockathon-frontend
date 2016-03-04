@@ -152,13 +152,14 @@ $(document).ready(function() {
     }
 
     function sendMessage(chatPopUpID, text) {
-        logi("Sending message: " + text);
         var message = { token: token, text: text };
+        logi("Sending message: ");
+        logi(message);
         writeToWebSocket(message);
         showMessageOnScreen(chatPopUpID, message);
     }
 
-    function writeToWebSocket(chatPopUpID, JSONData) {
+    function writeToWebSocket(JSONData) {
         if(ws == null || token == null) {
             //TODO: may be show some warning or error
             loge("Could not write. Websocket or token invalid");
@@ -167,7 +168,6 @@ $(document).ready(function() {
         ws.send(JSON.stringify(JSONData));
         logi("Written to websocket: ");
         logi(JSONData);
-        showMessageOnScreen(chatPopUpID, JSONData);
     }
 
     var startChatButtonID = namespaceID + "start-chat";
