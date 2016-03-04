@@ -27,10 +27,14 @@ $(document).ready(function() {
         $("body").append(plusDiv);
     }
     
+    
 
     function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
+        var headerLabel = newDivWithClass(namespaceID + "header-label" ).text("Flockster");
+        var connectionStatusLabel = newDivWithClass(namespaceID + "connection-status-label").text("Not connected.");
+        var favicon = newDivWithClass(namespaceID + "favicon").text("F");
         var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
-        chatPopUpHeader.append(closeButton);
+        chatPopUpHeader.append(favicon, closeButton, headerLabel, connectionStatusLabel);
 
         closeButton.on("click", function() {
             toggleChat(chatPopUpID);
