@@ -83,6 +83,7 @@ $(document).ready(function() {
         chatPopUp.append(chatPopUpHeader, chatPopUpContent, chatPopUpFooter);
 
         $("body").append(chatPopUp);
+        setSendMessageOnPressingEnter(chatPopUpID);
     }
 
     var ws = null;
@@ -178,7 +179,10 @@ $(document).ready(function() {
 
     function sendMessageClicked(chatPopUpID) {
         var textArea = $("#" + chatPopUpID + " .flockster-footer .flockster-text-input");
-        var text = textArea.val();
+        var text = textArea.val().trim();
+        if(text == "") {
+            return;
+        }
         logi(text);
         sendMessage(chatPopUpID, text)
         textArea.val("");
@@ -201,6 +205,16 @@ $(document).ready(function() {
         ws.send(JSON.stringify(JSONData));
         logi("Written to websocket: ");
         logi(JSONData);
+    }
+
+    function setSendMessageOnPressingEnter(chatPopUpID) {
+        logi($(".flockster-footer textarea"));
+        $(".flockster-footer textarea").keyup(function(event) {
+            logi(event.keyCode);
+            if(event.keyCode == 13 && !event.altKey && !event.shiftKey) {
+                sendMessageClicked(chatPopUpID);
+            }
+        });
     }
 
     var startChatButtonID = namespaceID + "start-chat";
