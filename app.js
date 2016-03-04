@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     function configureChatPopUpFooter(chatPopUpFooter) {
         var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input");
-        var sendButton = $("<button>").addClass(namespaceID + "send-button");
+        var sendButton = $("<button>").addClass(namespaceID + "send-button").text("Send");
 
         chatPopUpFooter.append(inputTextArea, sendButton);
     }
