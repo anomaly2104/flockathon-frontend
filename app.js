@@ -117,9 +117,9 @@ $(document).ready(function() {
         };
 
         ws.onmessage = function(message) {
-            logi("Message received: " + message);
             var data = JSON.parse(message.data);
-            logi("Parsed message received: " + data);
+            logi("Parsed message received: ");
+            logi(data);
             receivedMessage(chatPopUpID, data);
         };
     }
