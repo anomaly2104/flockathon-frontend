@@ -31,6 +31,13 @@ $(document).ready(function() {
         $("body").append(plusDiv);
     }
 
+    function configureChatPopUpFooter(chatPopUpFooter) {
+        var inputTextArea = $("<textarea>").addClass(namespaceID + "text-input");
+        var sendButton = $("<button>").addClass(namespaceID + "send-button");
+
+        chatPopUpFooter.append(inputTextArea, sendButton);
+    }
+
     function showChatPopUp(chatPopUpID) {
         console.log("start chat with popup ID: " + chatPopUpID);
         var chatPopUp = newDivWithID(chatPopUpID);
@@ -38,6 +45,7 @@ $(document).ready(function() {
         var chatPopUpHeader = newDivWithClass(namespaceID + "header");
         var chatPopUpContent = newDivWithClass(namespaceID + "content");
         var chatPopUpFooter = newDivWithClass(namespaceID + "footer");
+        configureChatPopUpFooter(chatPopUpFooter);
 
         chatPopUp.append(chatPopUpHeader, chatPopUpContent, chatPopUpFooter);
 
@@ -82,12 +90,11 @@ $(document).ready(function() {
         showMessageOnScreen(message);
     }
 
-    var startChatID = namespaceID + "start-chat";
-    showStartChatButton(startChatID);
+    var startChatButtonID = namespaceID + "start-chat";
+    showStartChatButton(startChatButtonID);
 
-    var chatPopUpID = namespaceID + "chat-pop-up";
-
-    $("#" + startChatID).on("click", function() {
+    $("#" + startChatButtonID).on("click", function() {
+        var chatPopUpID = namespaceID + "chat-pop-up";
         showChatPopUp(chatPopUpID);
         startChat(chatPopUpID);
     });
