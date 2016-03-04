@@ -17,6 +17,7 @@
 
 $(document).ready(function() {
     var namespaceID = "flockster-";
+    var host = "172.16.44.96:5000";
 
     function log(msg) {
         console.log(msg);
@@ -124,7 +125,7 @@ $(document).ready(function() {
 
     function initWebSocket() {
         var scheme   = "ws://";
-        var uri      = scheme + "172.16.44.96:5000" + "/";
+        var uri      = scheme + host + "/";
         return new WebSocket(uri);
     }
 
