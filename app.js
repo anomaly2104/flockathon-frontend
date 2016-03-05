@@ -30,7 +30,7 @@ $(document).ready(function() {
     
 
     function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
-        var headerLabel = newDivWithClass(namespaceID + "header-label" ).text("Flockster");
+        var headerLabel = newDivWithClass(namespaceID + "header-label" ).text("Flocklets");
         var connectionStatusLabel = newDivWithClass(namespaceID + "connection-status-label").text("Connecting...");
         var favicon = newDivWithClass(namespaceID + "favicon");
         var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
