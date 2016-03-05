@@ -26,8 +26,6 @@ $(document).ready(function() {
         var plusDiv = newDivWithID(id);
         $("body").append(plusDiv);
     }
-    
-    
 
     function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
         var headerLabel = newDivWithClass(namespaceID + "header-label" ).text("Flocklets");
@@ -136,11 +134,19 @@ $(document).ready(function() {
             loge("Closed");
             log(event);
             showStatus(chatPopUpID, "Not connected");
+            ws = null;
         };
 
         ws.onerror = function() {
             loge("Error occured");
             showStatus(chatPopUpID, "Not connected");
+            ws = null;
+        };
+
+        ws.onabort = function() {
+            loge("Abort occured");
+            showStatus(chatPopUpID, "Not connected");
+            ws = null;
         };
 
         ws.onmessage = function(message) {
@@ -262,8 +268,8 @@ $(document).ready(function() {
     var startChatButtonID = namespaceID + "start-chat";
     showStartChatButton(startChatButtonID);
 
+    var chatPopUpID = namespaceID + "chat-pop-up";
     $("#" + startChatButtonID).on("click", function() {
-        var chatPopUpID = namespaceID + "chat-pop-up";
         showChatPopUp(chatPopUpID);
         startChat(chatPopUpID);
     });
@@ -276,4 +282,65 @@ $(document).ready(function() {
     }
     timeoutBlink();
 
+    function monitorConnection() {
+        logi("Checking network status");
+        var randomValue = Math.floor((1 + Math.random()) * 0x10000)
+
+        $.ajax({
+            type: "HEAD",
+            url: document.location.pathname+"?rand=" + randomValue,
+            contentType: "application/json",
+            error: function(response) {
+                if(response.status != 0) {
+                    logi("Network disconnected.");
+                }
+            },
+            success: function() {
+                logi("Network connected.");
+            },
+            complete: function(jqXHR, textStatus) {
+                console.log(textStatus);
+
+                if(textStatus == "error") {
+                    disconnectWebSocket();
+                } else {
+                    reconnectWebSocket();
+                }
+            }
+        });
+
+        setTimeout(monitorConnection, 5000);
+    }
+
+    monitorConnection();
+
+    function disconnectWebSocket() {
+        log(ws);
+        if(ws != null) {
+            log(ws.readyState);
+        }
+        var shouldDisconnect = ws != null && (ws.readyState == WebSocket.OPEN || ws.readyState == WebSocket.CONNECTING);
+        logi("Should disconnect: " + shouldDisconnect);
+
+        if(shouldDisconnect) {
+            logi("Closing web socket");
+            ws.close();
+            showStatus(chatPopUpID, "Not Connected.")
+            ws=null;
+        }
+    }
+
+    function reconnectWebSocket() {
+        log(ws);
+        if(ws != null) {
+            log(ws.readyState);
+        }
+
+        var shouldReconnect = ws == null || (ws.readyState == WebSocket.CLOSED || ws.readyState == WebSocket.CLOSING );
+        logi("Should reconnect: " + shouldReconnect);
+        if(shouldReconnect) {
+            logi("Reconnecting web socket");
+            startChat(chatPopUpID);
+        }
+    }
 });
