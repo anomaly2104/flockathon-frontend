@@ -186,8 +186,11 @@ $(document).ready(function() {
 
     function showWelcomeMessage(chatPopUpID, welcomMessage) {
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
-        $(contentSelector).append(
-            "<div class='welcome-message'>"+welcomMessage+"</div>");
+
+        if($(contentSelector).find('.welcome-message').length == 0) {
+            $(contentSelector).append(
+                "<div class='welcome-message'>"+welcomMessage+"</div>");
+        }
     }
 
 
