@@ -78,6 +78,7 @@ $(document).ready(function() {
 
         $("body").append(chatPopUp);
         setSendMessageOnPressingEnter(chatPopUpID);
+        showNotConnected();
     }
 
     var ws = null;
@@ -127,7 +128,7 @@ $(document).ready(function() {
         ws = initWebSocket();
         showStatus(chatPopUpID, "Connecting...");
         ws.onopen = function() {
-            showStatus(chatPopUpID, "Connected");
+            showConnected();
             logi("Websocket opened");
             sendToken(chatPopUpID);
         };
@@ -135,19 +136,19 @@ $(document).ready(function() {
         ws.onclose = function(event) {
             loge("Closed");
             log(event);
-            showStatus(chatPopUpID, "Not connected");
+            showNotConnected();
             ws = null;
         };
 
         ws.onerror = function() {
             loge("Error occured");
-            showStatus(chatPopUpID, "Not connected");
+            showNotConnected();
             ws = null;
         };
 
         ws.onabort = function() {
             loge("Abort occured");
-            showStatus(chatPopUpID, "Not connected");
+            showNotConnected();
             ws = null;
         };
 
@@ -265,6 +266,10 @@ $(document).ready(function() {
         $(".flockster-footer textarea").keyup(function(event) {
             logi(event.keyCode);
             if(event.keyCode == 13 && !event.altKey && !event.shiftKey) {
+                if ($("#" + chatPopUpID + " .flockster-send-button").prop("disabled")) {
+                    logi("Sending disabled. So ignoring enter.");
+                    return;
+                }
                 sendMessageClicked(chatPopUpID);
             }
         });
@@ -330,7 +335,7 @@ $(document).ready(function() {
         if(shouldDisconnect) {
             logi("Closing web socket");
             ws.close();
-            showStatus(chatPopUpID, "Not Connected.")
+            showNotConnected();
             ws=null;
         }
     }
@@ -347,5 +352,20 @@ $(document).ready(function() {
             logi("Reconnecting web socket");
             startChat(chatPopUpID);
         }
+    }
+
+    function showConnected() {
+        showStatus(chatPopUpID, "Connected.");
+        enableSendButton(true);
+    }
+
+    function showNotConnected() {
+        showStatus(chatPopUpID, "Not Connected.");
+        enableSendButton(false);
+    }
+
+    function enableSendButton(shouldEnable) {
+        var selector = "#" + chatPopUpID + " .flockster-send-button";
+        $(selector).prop("disabled", !shouldEnable);
     }
 });
