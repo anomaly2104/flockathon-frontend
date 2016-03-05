@@ -47,6 +47,7 @@ $(document).ready(function() {
 
         logi(contentSelector);
         $(headerSelector).toggleClass("minimized");
+        $(headerSelector).toggleClass("minimized-additions");
         $(headerSelector).removeClass("should-blink");
         $(contentSelector).toggleClass("minimized");
         $(footerSelector).toggleClass("minimized");

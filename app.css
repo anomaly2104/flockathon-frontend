@@ -39,6 +39,11 @@
    border-bottom-color: black;
 }
 
+.flockster-header.minimized-additions {
+   border-bottom: none;
+   border-radius: 6px;
+}
+
 .flockster-content {
     width: 95%;
     height: 200px;
@@ -48,8 +53,6 @@
 
 .flockster-footer {
    height: 40px;
-   border-bottom-left-radius: 6px;
-   border-bottom-right-radius: 6px;
 }
 
 .flockster-header.minimized.should-blink.blink {
@@ -57,12 +60,10 @@
 }
 
 .flockster-content.minimized {
-    border: none;
     display: none;
 }
 
 .flockster-footer.minimized {
-    border: none;
     display: none;
 }
 
