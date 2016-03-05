@@ -1,12 +1,15 @@
 #flockster-start-chat {
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     right: 5px;
-    background-color: cadetblue;
+    width: 40px;
+    height: 40px;
     color: white;
     padding: 10px 15px;
     border-radius: 6px;
     cursor: pointer;
+    background-image: url("assets/iTunesArtWork@2x");
+    background-size: 100%;
 }
 
 #flockster-chat-pop-up {
@@ -51,10 +54,12 @@
 }
 
 .flockster-content.minimized {
+    border: none;
     display: none;
 }
 
 .flockster-footer.minimized {
+    border: none;
     display: none;
 }
 
@@ -109,7 +114,7 @@
     max-width: 200px;
     padding: 10px 10px 10px 10px;
     margin-bottom: 10px;
-    font-family: "HelveticaNueue";
+    font-family: "Helvetica Neue";
     font-size: 17px;
     clear: both;
 }
@@ -131,36 +136,32 @@
     border-width: 4px;
 }
 
-.flockster-content .message .label {
-}
-
-.flocckster-content .message .text {
-
-}
-
 .flockster-header-label {
     position: absolute;
-    margin-left: 80px;
-    margin-top: 5px;
-
+    margin-left: 60px;
+    margin-top: 10px;
     width: 50px;
     height: 20px;
+    color: darkgreen;
+    font-size: 18px;
+    font-family: "Arial";
 }
 
 .flockster-connection-status-label {
     position: absolute;
-    margin-left: 80px;
-    margin-top: 25px;
-    font-size: 13px;
+    margin-left: 60px;
+    bottom: 3px;
+    font-size: 12px;
+    font-family: "Arial";
         
 }
 .flockster-favicon {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    margin-left: 20px;
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
     margin-top: 10px;
-    background-image: url("assets/flock-logo-flockIcon@2x.png");
+    background-image: url("assets/iTunesArtWork");
     background-size: 100%;
 }
 

@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
 
     function showStartChatButton(id) {
-        var plusDiv = newDivWithID(id).html("Support chat");
+        var plusDiv = newDivWithID(id);
         $("body").append(plusDiv);
     }
     
