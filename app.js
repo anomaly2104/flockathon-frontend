@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function documentReady() {
     var namespaceID = "flockster-";
     var host = "172.16.44.96:5000";
 
@@ -44,7 +44,7 @@ $(document).ready(function() {
         var headerSelector = "#" + chatPopUpID + " .flockster-header";
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         var footerSelector = "#" + chatPopUpID + " .flockster-footer";
-                
+
         logi(contentSelector);
         $(headerSelector).toggleClass("minimized");
         $(headerSelector).toggleClass("minimized-additions");
@@ -73,7 +73,7 @@ $(document).ready(function() {
         var chatPopUpFooter = newDivWithClass(namespaceID + "footer");
         configureChatPopUpHeader(chatPopUpID, chatPopUpHeader);
         configureChatPopUpFooter(chatPopUpID, chatPopUpFooter);
-        
+
         chatPopUp.append(chatPopUpHeader, chatPopUpContent, chatPopUpFooter);
 
         $("body").append(chatPopUp);
@@ -368,4 +368,8 @@ $(document).ready(function() {
         var selector = "#" + chatPopUpID + " .flockster-send-button";
         $(selector).prop("disabled", !shouldEnable);
     }
+}
+
+$(document).ready(function () {
+    documentReady();
 });
