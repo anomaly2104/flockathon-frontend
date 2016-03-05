@@ -1,0 +1,15 @@
+var flocksterID='b88f071e-9ee4-41fc-b48d-4001aa7530f5'
+var jq = document.createElement('script');
+jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js";
+document.getElementsByTagName('head')[0].appendChild(jq);
+
+
+jq = document.createElement('script');
+jq.src = "http://www.newshubapp.co/flockathon-frontend/app.js";
+document.getElementsByTagName('head')[0].appendChild(jq);
+
+
+jq = document.createElement('link');
+jq.href = "http://www.newshubapp.co/flockathon-frontend/app.css";
+jq.rel = "stylesheet";
+document.getElementsByTagName('head')[0].appendChild(jq);
