@@ -17,7 +17,6 @@
     bottom: 5px;
     right: 5px;
     width: 300px;
-    //background-color: #d8d8d8;
     background-color: #f6f4f1;
     border-radius: 6px;
     border-style: solid;
@@ -143,16 +142,9 @@
 
 .flockster-header-label {
     position: absolute;
-<<<<<<< HEAD
     margin-left: 60px;
     margin-top: 10px;
     width: 50px;
-=======
-    margin-left: 80px;
-    margin-top: 5px;
-
-    width: 100px;
->>>>>>> e341d4498a48b07d29df18d19aafbf4893485acc
     height: 20px;
     color: darkgreen;
     font-size: 18px;
