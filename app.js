@@ -127,7 +127,6 @@ $(document).ready(function() {
         ws.onopen = function() {
             showStatus(chatPopUpID, "Connected");
             logi("Websocket opened");
-            $(".flockster-connection-status-label").text("Connected");
             sendToken(chatPopUpID);
         };
 
