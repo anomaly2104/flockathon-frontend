@@ -132,11 +132,14 @@ $(document).ready(function() {
             sendToken(chatPopUpID);
         };
 
-        ws.onclose = function() {
+        ws.onclose = function(event) {
+            loge("Closed");
+            log(event);
             showStatus(chatPopUpID, "Not connected");
         };
 
         ws.onerror = function() {
+            loge("Error occured");
             showStatus(chatPopUpID, "Not connected");
         };
 
@@ -159,6 +162,8 @@ $(document).ready(function() {
     }
 
     function configReceived(chatPopUpID, config) {
+        logi("Config received");
+        log(config);
         showSupportName(chatPopUpID, config["support-name"]);
         showWelcomeMessage(chatPopUpID, config["welcome-message"]);
     }
