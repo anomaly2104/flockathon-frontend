@@ -267,7 +267,7 @@ $(document).ready(function() {
         $(".flockster-header.minimized.should-blink").toggleClass("blink");
         setTimeout(function(){
             timeoutBlink();
-        }, 1000);
+        }, 500);
     }
     timeoutBlink();
 
