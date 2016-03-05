@@ -26,17 +26,17 @@ $(document).ready(function() {
         var plusDiv = newDivWithID(id);
         $("body").append(plusDiv);
     }
-    
-    
 
     function configureChatPopUpHeader(chatPopUpID, chatPopUpHeader) {
         var headerLabel = newDivWithClass(namespaceID + "header-label" ).text("Flockster");
         var connectionStatusLabel = newDivWithClass(namespaceID + "connection-status-label").text("Connecting...");
         var favicon = newDivWithClass(namespaceID + "favicon");
-        var closeButton = $("<button>").addClass(namespaceID + "close-button").text("X");
+        var closeButton = $("<button>").addClass(namespaceID + "close-button").html("&#x2010;");
         chatPopUpHeader.append(favicon, closeButton, headerLabel, connectionStatusLabel);
-        closeButton.on("click", function() {
+        chatPopUpHeader.on("click", function() {
+            logi("clicked header");
             toggleChat(chatPopUpID);
+            closeButton.toggleClass("minimized");
         });
     }
 
@@ -44,7 +44,7 @@ $(document).ready(function() {
         var headerSelector = "#" + chatPopUpID + " .flockster-header";
         var contentSelector = "#" + chatPopUpID + " .flockster-content";
         var footerSelector = "#" + chatPopUpID + " .flockster-footer";
-
+                
         logi(contentSelector);
         $(headerSelector).toggleClass("minimized");
         $(headerSelector).toggleClass("minimized-additions");
