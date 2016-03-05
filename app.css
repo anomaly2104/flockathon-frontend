@@ -37,6 +37,11 @@
    border-width: 1px;
    border-bottom:1px solid; 
    border-bottom-color: black;
+   cursor: pointer;
+}
+
+.flockster-close-button.minimized {
+    display: none;
 }
 
 .flockster-header.minimized-additions {
@@ -102,6 +107,7 @@
     height: 25px; 
     text-align: center;
     font-size: 17px;
+    font-weight: bolder;
     border-color: black;
     border-width: 1px;
     border-radius: 4px;
@@ -136,9 +142,7 @@
     background-color: white;
     display: inline-block;
     margin-left: 5px;
-    float: left;
-    border-color: gray;
-    border-width: 4px;
+    float: left;    
 }
 
 .flockster-content .welcome-message {
