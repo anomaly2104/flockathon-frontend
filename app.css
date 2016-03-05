@@ -85,11 +85,12 @@
 
 .flockster-send-button {
     position: absolute;
-    height: 40px;
+    height: 41px;
     width: 20%;
-    bottom: 0px;
+    bottom: -1px;
+    right: -1px;
     border-bottom-right-radius: 6px;
-    border-top-right-radius: 6px;
+    /*border-top-right-radius: 6px;*/
     color: #0dcb57;
     background-color: white;
     font-size: 15px;
