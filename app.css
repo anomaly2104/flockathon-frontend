@@ -136,11 +136,23 @@
     border-width: 4px;
 }
 
+.flockster-content .welcome-message {
+    text-align: center;
+    padding: 5px 5px;
+}
+
 .flockster-header-label {
     position: absolute;
+<<<<<<< HEAD
     margin-left: 60px;
     margin-top: 10px;
     width: 50px;
+=======
+    margin-left: 80px;
+    margin-top: 5px;
+
+    width: 100px;
+>>>>>>> e341d4498a48b07d29df18d19aafbf4893485acc
     height: 20px;
     color: darkgreen;
     font-size: 18px;
@@ -164,5 +176,3 @@
     background-image: url("assets/iTunesArtWork");
     background-size: 100%;
 }
-
-

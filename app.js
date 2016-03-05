@@ -123,23 +123,59 @@ $(document).ready(function() {
         assignToken();
         logi("Initializing web socket");
         ws = initWebSocket();
+        showStatus(chatPopUpID, "Connecting...");
         ws.onopen = function() {
+            showStatus(chatPopUpID, "Connected");
             logi("Websocket opened");
             $(".flockster-connection-status-label").text("Connected");
             sendToken(chatPopUpID);
         };
 
+        ws.onclose = function() {
+            showStatus(chatPopUpID, "Not connected");
+        };
+
+        ws.onerror = function() {
+            showStatus(chatPopUpID, "Not connected");
+        };
+
         ws.onmessage = function(message) {
             var data = JSON.parse(message.data);
+            if(data.hasOwnProperty("support-name")){
+                configReceived(chatPopUpID, data);
+                return;
+            }
+
             logi("Parsed message received: ");
             logi(data);
             receivedMessage(chatPopUpID, data);
         };
     }
 
+    function showStatus(chatPopUpID, status) {
+        var selector = "#" + chatPopUpID + " .flockster-header .flockster-connection-status-label";
+        $(selector).text(status);
+    }
+
+    function configReceived(chatPopUpID, config) {
+        showSupportName(chatPopUpID, config["support-name"]);
+        showWelcomeMessage(chatPopUpID, config["welcome-message"]);
+    }
+
+    function showSupportName(chatPopUpID, supportName) {
+        var selector = "#" + chatPopUpID + " .flockster-header .flockster-header-label";
+        $(selector).text(supportName);
+    }
+
     function sendToken(chatPopUpID) {
         logi("Sending token: " + token);
         writeToWebSocket({handle: token});
+    }
+
+    function showWelcomeMessage(chatPopUpID, welcomMessage) {
+        var contentSelector = "#" + chatPopUpID + " .flockster-content";
+        $(contentSelector).append(
+            "<div class='welcome-message'>"+welcomMessage+"</div>");
     }
 
 
@@ -201,6 +237,7 @@ $(document).ready(function() {
             loge("Could not write. Websocket or token invalid");
             return;
         }
+        JSONData.uuid = flocksterID;
         ws.send(JSON.stringify(JSONData));
         logi("Written to websocket: ");
         logi(JSONData);
