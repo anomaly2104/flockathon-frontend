@@ -31,7 +31,7 @@ $(document).ready(function() {
         var headerLabel = newDivWithClass(namespaceID + "header-label" ).text("Flocklets");
         var connectionStatusLabel = newDivWithClass(namespaceID + "connection-status-label").text("Connecting...");
         var favicon = newDivWithClass(namespaceID + "favicon");
-        var closeButton = $("<button>").addClass(namespaceID + "close-button").html("&#x2010;");
+        var closeButton = $("<button>").addClass(namespaceID + "close-button").html("&mdash;");
         chatPopUpHeader.append(favicon, closeButton, headerLabel, connectionStatusLabel);
         chatPopUpHeader.on("click", function() {
             logi("clicked header");
