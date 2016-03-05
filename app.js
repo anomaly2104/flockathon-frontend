@@ -63,6 +63,7 @@ $(document).ready(function() {
     }
 
     function showChatPopUp(chatPopUpID) {
+        $("#flockster-start-chat").toggleClass("disable");
         logi("start chat with popup ID: " + chatPopUpID);
         var chatPopUp = newDivWithID(chatPopUpID);
 

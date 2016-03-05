@@ -12,6 +12,10 @@
     background-size: 100%;
 }
 
+#flockster-start-chat.disable {
+    display: none;
+}
+
 #flockster-chat-pop-up {
     position: absolute;
     bottom: 5px;
