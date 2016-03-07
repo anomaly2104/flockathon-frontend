@@ -10,6 +10,7 @@
     cursor: pointer;
     background-image: url("http://a5.mzstatic.com/us/r30/Purple69/v4/11/7a/14/117a143b-9b42-5191-d7a3-e6bfac376d7b/icon175x175.jpeg");
     background-size: 100%;
+    z-index: 100000000;
 }
 
 #flockster-start-chat.disable {
@@ -25,6 +26,7 @@
     border-radius: 6px;
     border-style: solid;
     border-width: 1px;
+    z-index: 100000000;
 }
 
 .flockster-header {
