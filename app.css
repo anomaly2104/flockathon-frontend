@@ -1,5 +1,5 @@
 #flockster-start-chat {
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     right: 5px;
     width: 40px;
@@ -18,7 +18,7 @@
 }
 
 #flockster-chat-pop-up {
-    position: absolute;
+    position: fixed;
     bottom: 5px;
     right: 5px;
     width: 300px;
